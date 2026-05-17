@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nullpum — 개인정보처리방침</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --border: #2a2a2a;
+      --accent: #c8f060;
+      --text: #e8e8e0;
+      --muted: #888880;
+      --serif: 'Noto Serif KR', serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      line-height: 1.9;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(14, 14, 14, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: var(--mono);
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+    }
+
+    .logo span { color: var(--muted); font-size: 0.8rem; margin-left: 0.5rem; }
+
+    nav a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 8rem 3rem 5rem;
+      max-width: 860px;
+      margin: 0 auto;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 2;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Privacy Section ── */
+    .privacy {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 3rem 8rem;
+      animation: fadeUp 0.9s 0.15s ease both;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .policy-block {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 1.6rem;
+      overflow: hidden;
+      transition: border-color 0.25s;
+    }
+    .policy-block:hover { border-color: #3a3a3a; }
+
+    .policy-head {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.3rem 1.6rem;
+      background: var(--surface);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .policy-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      min-width: 2rem;
+    }
+
+    .policy-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .policy-arrow {
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: transform 0.3s;
+    }
+    details[open] .policy-arrow { transform: rotate(180deg); }
+
+    .policy-body {
+      padding: 1.4rem 1.6rem 1.6rem 3.8rem;
+      font-size: 0.9rem;
+      color: #b0b0a8;
+      line-height: 2.1;
+      border-top: 1px solid var(--border);
+    }
+
+    .policy-body ul {
+      list-style: none;
+      padding: 0;
+    }
+    .policy-body ul li::before {
+      content: '—';
+      color: var(--accent);
+      margin-right: 0.6rem;
+      font-family: var(--mono);
+    }
+    .policy-body ul li { margin-bottom: 0.4rem; }
+
+    .policy-body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .policy-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+    }
+    .policy-body th {
+      background: #1e1e1e;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      padding: 0.7rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    .policy-body td {
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border);
+      color: #aaa;
+      vertical-align: top;
+    }
+
+    /* ── Info Card ── */
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem 2.4rem;
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem 3rem;
+    }
+
+    .info-row { display: flex; flex-direction: column; gap: 0.2rem; }
+    .info-key {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .info-val { font-size: 0.92rem; color: var(--text); }
+    .info-val a { color: var(--accent); text-decoration: none; }
+    .info-val a:hover { text-decoration: underline; }
+
+    /* ── Effective date bar ── */
+    .eff-date {
+      margin-top: 3rem;
+      padding: 1rem 1.4rem;
+      background: rgba(200, 240, 96, 0.05);
+      border-left: 2px solid var(--accent);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .eff-date strong { color: var(--accent); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      header { padding: 1rem 1.4rem; }
+      .hero, .privacy, .divider { padding-left: 1.4rem; padding-right: 1.4rem; }
+      .hero { padding-top: 5rem; }
+      .info-card { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.6rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo">nullpum <span>/ 개인정보처리방침</span></div>
+  <nav>
+    <a href="mailto:nullpum1@gmail.com">문의</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-tag">Privacy Policy · 개인정보처리방침</div>
+  <h1>사용자의 개인정보,<br><em>투명하게</em> 처리합니다.</h1>
+  <p class="hero-desc">
+    nullpum은 정보통신망 이용촉진 및 정보보호 등에 관한 법률,<br>
+    개인정보 보호법 등 관련 법령을 준수하며<br>
+    이용자의 개인정보를 보호하기 위해 최선을 다합니다.
+  </p>
+</section>
+
+<hr class="divider" />
+
+<!-- Privacy Policy -->
+<section class="privacy" id="privacy">
+  <div class="section-label">Privacy Policy Details</div>
+
+  <!-- 1 -->
+  <details class="policy-block" open>
+    <summary class="policy-head">
+      <span class="policy-num">01</span>
+      <span class="policy-title">수집하는 개인정보 항목 및 수집 방법</span>
+      <span class="policy-arrow">▾</span>
+    </summary>
+    <div class="policy-body">
+      <p>회사는 서비스 제공을 위해 다음과 같은 개인정보를 수집합니다.</p>
+      <br/>
+      <table>
+        <thead>
+          <tr><th>수집 항목</th><th>수집 목적</th><th>보유 기간</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>이메일 주소</td><td>문의 응대, 서비스 안내</td><td>처리 완료 후 즉시 삭제</td></tr>
+          <tr><td>기기 식별자 (광고 ID)</td><td>서비스 개선, 오류 분석</td><td>수집일로부터 1년</td></tr>
+          <tr><td>앱 사용 로그</td><td>서비스 품질 향상</td><td>수집일로부터 1년</td></tr>
+        </tbody>
+      </table>
+      <br/>
+      <p><strong>수집 방법:</strong> 서비스 이용 과정에서 자동으로 생성·수집되거나, 이용자가 직접 입력하는 방식으로 수집됩니다.</p>
+    </div>
+  </details>
+
+  <!-- 2 -->
+  <details class="policy-block">
+    <summary class="policy-head">
+      <span class="policy-num">02</span>
+      <span class="policy-title">개인정보의 수집 및 이용 목적</span>
+      <span class="policy-arrow">▾</span>
+    </summary>
+    <div class="policy-body">
+      <ul>
+        <li>서비스 제공 및 운영</li>
+        <li>서비스 개선 및 신규 서비스 개발</li>
+        <li>이용자 문의 응대</li>
+        <li>법령상 의무 이행</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- 3 -->
+  <details class="policy-block">
+    <summary class="policy-head">
+      <span class="policy-num">03</span>
+      <span class="policy-title">개인정보의 제3자 제공</span>
+      <span class="policy-arrow">▾</span>
+    </summary>
+    <div class="policy-body">
+      <p>
+        회사는 원칙적으로 이용자의 개인정보를 외부에 제공하지 않습니다.
+        다만, 아래의 경우에는 예외로 합니다.
+      </p>
+      <br/>
+      <ul>
+        <li>이용자가 사전에 동의한 경우</li>
+        <li>법령의 규정에 의거하거나 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- 4 -->
+  <details class="policy-block">
+    <summary class="policy-head">
+      <span class="policy-num">04</span>
+      <span class="policy-title">개인정보의 처리 위탁</span>
+      <span class="policy-arrow">▾</span>
+    </summary>
+    <div class="policy-body">
+      <p>회사는 현재 개인정보 처리 업무를 외부에 위탁하고 있지 않습니다.<br>
+      향후 위탁이 필요한 경우 관련 법령에 따라 사전에 공지하겠습니다.</p>
+    </div>
+  </details>
+
+  <!-- 5 -->
+  <details class="policy-block">
+    <summary class="policy-head">
+      <span class="policy-num">05</span>
+      <span class="policy-title">개인정보의 보유 및 이용 기간 / 파기</span>
+      <span class="policy-arrow">▾</span>
+    </summary>
+    <div class="policy-body">
+      <p>수집된 개인정보는 수집 및 이용 목적이 달성된 후 지체 없이 파기합니다.<br>
+      전자적 파일 형태는 복구 불가능한 방법으로 영구 삭제하며,<br>
+      출력물 등은 분쇄 또는 소각하여 파기합니다.</p>
+    </div>
+  </details>
+
+  <!-- 6 -->
+  <details class="policy-block">
+    <summary class="policy-head">
+      <span class="policy-num">06</span>
+      <span class="policy-title">이용자의 권리 및 행사 방법</span>
+      <span class="policy-arrow">▾</span>
+    </summary>
+    <div class="policy-body">
+      <p>이용자는 언제든지 아래의 권리를 행사할 수 있습니다.</p>
+      <br/>
+      <ul>
+        <li>개인정보 열람 요구</li>
+        <li>오류 등이 있을 경우 정정 요구</li>
+        <li>삭제 요구</li>
+        <li>처리 정지 요구</li>
+      </ul>
+      <br/>
+      <p>권리 행사는 이메일(<strong>nullpum1@gmail.com</strong>) 또는 전화로 연락하시면 지체 없이 처리하겠습니다.</p>
+    </div>
+  </details>
+
+  <!-- 7 -->
+  <details class="policy-block">
+    <summary class="policy-head">
+      <span class="policy-num">07</span>
+      <span class="policy-title">개인정보 보호를 위한 기술적·관리적 대책</span>
+      <span class="policy-arrow">▾</span>
+    </summary>
+    <div class="policy-body">
+      <ul>
+        <li>개인정보 취급 직원 최소화 및 교육 실시</li>
+        <li>해킹 등에 대비한 보안 프로그램 설치 및 주기적 갱신</li>
+        <li>개인정보 접근 권한 관리</li>
+        <li>개인정보 처리시스템 접근 통제</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- 8 -->
+  <details class="policy-block">
+    <summary class="policy-head">
+      <span class="policy-num">08</span>
+      <span class="policy-title">개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항</span>
+      <span class="policy-arrow">▾</span>
+    </summary>
+    <div class="policy-body">
+      <p>
+        회사는 서비스 품질 향상을 위해 이용자의 정보를 저장하고 수시로 불러오는 '쿠키(cookie)' 또는 유사 기술을 사용할 수 있습니다.
+        이용자는 웹 브라우저 설정에서 쿠키 허용 여부를 선택할 수 있으며, 쿠키 설정 거부 시 일부 서비스 이용이 제한될 수 있습니다.
+      </p>
+    </div>
+  </details>
+
+  <!-- 9 -->
+  <details class="policy-block">
+    <summary class="policy-head">
+      <span class="policy-num">09</span>
+      <span class="policy-title">개인정보 보호책임자</span>
+      <span class="policy-arrow">▾</span>
+    </summary>
+    <div class="policy-body">
+      <p>개인정보 처리에 관한 업무를 총괄하고, 개인정보 처리와 관련한 불만 처리 및 피해 구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
+      <br/>
+      <ul>
+        <li><strong>성명:</strong> 고정희</li>
+        <li><strong>직책:</strong> 대표</li>
+        <li><strong>이메일:</strong> nullpum1@gmail.com</li>
+        <li><strong>전화:</strong> 010-2746-3270</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- Company Info Card -->
+  <div class="info-card">
+    <div class="info-row">
+      <span class="info-key">Company</span>
+      <span class="info-val">nullpum</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">대표자</span>
+      <span class="info-val">고정희</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">사업자등록번호</span>
+      <span class="info-val">638-31-01185</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">연락처</span>
+      <span class="info-val">010-2746-3270</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">이메일</span>
+      <span class="info-val"><a href="mailto:nullpum1@gmail.com">nullpum1@gmail.com</a></span>
+    </div>
+  </div>
+
+  <div class="eff-date">
+    <strong>시행일:</strong> 2025년 01월 01일 &nbsp;|&nbsp; 본 방침은 시행일로부터 적용됩니다.
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span>© 2025 nullpum. All rights reserved.</span>
+  <span>사업자번호 638-31-01185</span>
+</footer>
+
+<script>
+  // details/summary polyfill fallback — clicks handled natively
+  // Prevent default to keep <details> open/close behavior
+  document.querySelectorAll('.policy-head').forEach(head => {
+    head.addEventListener('click', e => {
+      // Let browser handle it; just ensure arrow rotates via CSS
+    });
+  });
+</script>
+</body>
+</html>
